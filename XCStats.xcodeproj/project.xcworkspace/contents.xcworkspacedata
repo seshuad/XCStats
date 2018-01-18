@@ -2,6 +2,9 @@
 <Workspace
    version = "1.0">
    <FileRef
+      location = "group:/Users/sadunuthula/repos/XCStats/XCStats/XCStats/xcstats.csv">
+   </FileRef>
+   <FileRef
       location = "self:XCStats.xcodeproj">
    </FileRef>
 </Workspace>
