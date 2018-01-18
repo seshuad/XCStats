@@ -44,13 +44,13 @@ class ViewController: UIViewController, UITableViewDataSource, UIPickerViewDataS
         
         let df = DateFormatter()
         df.dateFormat = "yyyy-MM-dd"
-        let date = df.string(from:records[indexPath.row].eventDate)
+        let date = df.string(from:records[indexPath.row].eventDate!)
         cell.dateLabel!.text = date
         
-        let rank = "Rank " + String(records[indexPath.row].placement)
+        let rank = "Rank " + String(describing: records[indexPath.row].placement!)
         cell.rankLabel.text = rank
         
-        let runners = "Runners " + String(records[indexPath.row].totalRunners)
+        let runners = "Runners " + String(describing: records[indexPath.row].totalRunners!)
         cell.numRunnersLabel!.text = runners
         
         cell.eventLabel!.text = records[indexPath.row].eventName

@@ -14,6 +14,7 @@ enum Division : String {
     case JV = "JV"
     case So = "So"
     case Jr = "Jr"
+    case Sr = "Sr"
     case Fr = "Fr"
     case FS = "F/S"
 }
@@ -22,14 +23,14 @@ struct XCStatRecord {
     var id: String
     var school: String
     var athelte: String
-    var eventDate: Date
+    var eventDate: Date?
     var eventName: String
     var eventCourse: String
-    var distance: Double
+    var distance: Double?
     var division: Division
-    var placement: Int
-    var totalRunners: Int
-    var stdDev: Double
+    var placement: Int?
+    var totalRunners: Int?
+    var stdDev: Double?
     var time: String
     var pace: String
     var notes: String?
@@ -52,14 +53,14 @@ class XCStatData {
             ckr["id"] = record.id as NSString
             ckr["school"] = record.school as NSString
             ckr["athlete"] = record.athelte as NSString
-            ckr["eventDate"] = record.eventDate as NSDate
+            ckr["eventDate"] = record.eventDate as! NSDate
             ckr["eventName"] = record.eventName as NSString
             ckr["eventCourse"] = record.eventCourse as NSString
-            ckr["distance"] = record.distance as NSNumber
+            ckr["distance"] = record.distance as! NSNumber
             ckr["division"] = record.division.rawValue as NSString
-            ckr["placement"] = record.placement as NSNumber
-            ckr["totalRunners"] = record.totalRunners as NSNumber
-            ckr["stdDev"] = record.stdDev as NSNumber
+            ckr["placement"] = record.placement as! NSNumber
+            ckr["totalRunners"] = record.totalRunners as! NSNumber
+            ckr["stdDev"] = record.stdDev as! NSNumber
             ckr["time"] = record.time as NSString
             ckr["pace"] = record.pace as NSString
             ckr["notes"] = record.notes as! NSString

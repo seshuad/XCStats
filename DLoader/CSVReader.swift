@@ -34,8 +34,8 @@ func cleanRows(file:String)->String{
     return cleanFile
 }
 
-func csv(data: String) -> [[String?]] {
-    var result: [[String?]] = []
+func csv(data: String) -> [[String]] {
+    var result: [[String]] = []
     var rows = data.components(separatedBy: "\n")
     
     //remove the header
@@ -48,7 +48,7 @@ func csv(data: String) -> [[String?]] {
     return result
 }
 
-func loadXCStats(csv: [[String?]]) -> [XCStatRecord] {
+func loadXCStats(csv: [[String]]) -> [XCStatRecord] {
     var records:[XCStatRecord] = []
     
     for row in csv {
@@ -58,17 +58,21 @@ func loadXCStats(csv: [[String?]]) -> [XCStatRecord] {
         
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "M/dd/yy"
-        let date = dateFormatter.date(from: row[2]!)
+        let date = dateFormatter.date(from: row[2])
         
-        let pl = row[7]?.components(separatedBy: "/")
+        let pl = row[7].components(separatedBy: "/")
         let id = UUID().uuidString
-        let distance = Double(row[5] ?? "") ?? 0.0
-        let stdDev = Double(row[8] ?? "") ?? 0.0
-        let pl0 = Int(pl![0] ?? "") ?? 0
-        let pl1 = Int(pl![1] ?? "") ?? 0
-        let notes = row[11]! ?? "You Rock!"
+        let distance = Double(row[5])
+        let stdDev = Double(row[8])
+        let pl0 = Int(pl[0])
+        let pl1 = Int(pl[1])
+        let notes = row[11]
+        let division = Division(rawValue: row[6])
         
-        let record = XCStatRecord(id: id, school: row[0]!, athelte: row[1]!, eventDate: date!, eventName: row[3]!, eventCourse: row[4]!, distance: distance, division: Division(rawValue: row[6]!)!, placement: pl0, totalRunners: pl1, stdDev: stdDev, time: row[9]!, pace: row[10]!, notes: notes)
+        let record = XCStatRecord(id: id, school: row[0], athelte: row[1], eventDate: date,
+                                  eventName: row[3], eventCourse: row[4], distance: distance,
+                                  division: division!, placement: pl0, totalRunners: pl1,
+                                  stdDev: stdDev, time: row[9], pace: row[10], notes: notes)
         records.append(record)
     }
     
